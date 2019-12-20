@@ -59,8 +59,10 @@ componentDidUpdate(prevProps) {
   const { data } = this.props;
   console.log(data);
     this.setState({ isLoading: true }, () => {
-      request
-        .get('http://shibe.online/api/' + data + '?count=[1-10]&urls=[true/false]&httpsUrls=[true/false]')
+      fetch('http://shibe.online/api/' + data + '?count=[1-10]&urls=[true/false]&httpsUrls=[true/false]', {
+        method: 'GET',
+        mode: 'no-cors'
+      })
         .then((results) => {
         console.log("results");
         console.log(results);
