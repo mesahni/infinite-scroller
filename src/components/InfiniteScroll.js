@@ -60,23 +60,16 @@ componentDidUpdate(prevProps) {
   console.log(data);
     this.setState({ isLoading: true }, () => {
       request
-        .get('https://randomuser.me/api/?results=10')
-//.get('http://shibe.online/api/' + data + '?count=[1-10]&urls=[true/false]&httpsUrls=[true/false]')
+        .get('http://shibe.online/api/' + data + '?count=[1-10]&urls=[true/false]&httpsUrls=[true/false]')
         .then((results) => {
         console.log("results");
         console.log(results);
           // Creates a massaged array of user data
-//          const nextUsers = results.map(user => ({
-//            email: user.email,
-//            name: Object.values(user.name).join(' '),
-//            photo: user.picture.medium,
-//            username: user.login.username,
-//            uuid: user.login.uuid,
-//          }));
 
-const nextUsers = results.map(user => ({
-    photo: user.picture.medium
-}))
+
+        const nextUsers = results.body.results.map(user => ({
+            photo: user.picture.medium
+        }))
 
           // Merges the next users into our existing users
           this.setState({
