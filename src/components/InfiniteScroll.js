@@ -59,14 +59,16 @@ componentDidUpdate(prevProps) {
   const { data } = this.props;
   console.log(data);
     this.setState({ isLoading: true }, () => {
-      fetch('http://shibe.online/api/' + data + '?count=[1-10]&urls=[true/false]&httpsUrls=[true/false]', {
+      //The shibe website is down and not working
+      request.get('https://randomuser.me/api/?results=10', {
+      //request.get('http://shibe.online/api/' + data + '?count=[1-10]&urls=[true/false]&httpsUrls=[true/false]', {
         method: 'GET',
         mode: 'no-cors'
       })
         .then((results) => {
         console.log("results");
         console.log(results);
-          // Creates a massaged array of user data
+          // Creates a massaged array of user data. If website is up create animal data
 
 
         const nextUsers = results.body.results.map(user => ({
